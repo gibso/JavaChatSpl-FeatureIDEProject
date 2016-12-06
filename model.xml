@@ -145,6 +145,16 @@
 							Die Möglichkeit für den User die Nachrichten zu durchsuchen.
 						</description>
 					</feature>
+					<feature name="clearChat">
+						<description>
+							
+						</description>
+					</feature>
+					<feature name="changeChatBgColor">
+						<description>
+							
+						</description>
+					</feature>
 				</and>
 			</and>
 		</struct>

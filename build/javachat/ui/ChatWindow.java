@@ -1,6 +1,7 @@
 package javachat.ui;
 
 import java.awt.GraphicsEnvironment;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -22,7 +23,11 @@ public class ChatWindow extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.ButtonGroup buttonGroupModeType;
+	
+	// #if clearChat
 	private javax.swing.JButton jButtonClear;
+	// #endif
+	
 	private javax.swing.JButton jButtonSend;
 	
 	// #if setNickname
@@ -35,7 +40,9 @@ public class ChatWindow extends javax.swing.JFrame {
 	private javax.swing.JRadioButton jRadioButtonClient;
 	private javax.swing.JRadioButton jRadioButtonServer;
 	private javax.swing.JScrollPane jScrollPane1;
+	
 	private javax.swing.JTextArea jTextAreaChat;
+	
 	private javax.swing.JTextField jTextFieldHostname;
 	private javax.swing.JTextField jTextFieldMessage;
 	private javax.swing.JTextField jTextFieldName;
@@ -44,6 +51,11 @@ public class ChatWindow extends javax.swing.JFrame {
 	// End of variables declaration//GEN-END:variables
 
 	// Feature variables
+	
+	// #if changeChatBgColor
+	private javax.swing.JButton jButtonChatBgColor;
+	private javax.swing.JColorChooser jColorChooserChatBgColor;
+	// #endif
 	
 	// #if changeSize
 	private javax.swing.JTextField jTextFieldFontsize;
@@ -99,20 +111,50 @@ public class ChatWindow extends javax.swing.JFrame {
 		jToggleButtonOnline = new javax.swing.JToggleButton();
 		jTextFieldMessage = new javax.swing.JTextField();
 		jScrollPane1 = new javax.swing.JScrollPane();
+		
 		jTextAreaChat = new javax.swing.JTextArea();
+		
 		jButtonSend = new javax.swing.JButton();
 		jTextFieldName = new javax.swing.JTextField();
 		jLabel1 = new javax.swing.JLabel();
+		
+		// #if clearChat
 		jButtonClear = new javax.swing.JButton();
+		
+		jButtonClear.setText("Clear");
+		jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButtonClearActionPerformed(evt);
+			}
+		});
+		// #endif
 		
 		// #if setNickname
 		jButtonUpdateName = new javax.swing.JButton();
-		
+
 		jButtonUpdateName.setText("Update Name");
 		jButtonUpdateName.setEnabled(false);
 		jButtonUpdateName.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonUpdateNameActionPerformed(evt);
+			}
+		});
+		// #endif
+		
+		// #if changeChatBgColor
+		jButtonChatBgColor = new javax.swing.JButton();
+		jButtonChatBgColor.setText("Chat BG-Color");
+
+		jButtonChatBgColor.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+				Color initialBackground = jTextAreaChat.getBackground();
+
+				Color background = javax.swing.JColorChooser.showDialog(null, "Change Button Background",
+						initialBackground);
+				if (background != null) {
+					jTextAreaChat.setBackground(background);
+				}
 			}
 		});
 		// #endif
@@ -258,12 +300,7 @@ public class ChatWindow extends javax.swing.JFrame {
 
 		jLabel1.setText("Name:");
 
-		jButtonClear.setText("Clear");
-		jButtonClear.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButtonClearActionPerformed(evt);
-			}
-		});
+
 		
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -274,8 +311,17 @@ public class ChatWindow extends javax.swing.JFrame {
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jButtonSend)
 						.addPreferredGap(
 								javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jButtonClear))
+						
+						// #if clearChat
+						.addComponent(jButtonClear)
+						// #endif
+						
+						)
 				.addGroup(layout.createSequentialGroup()
+						
+						// #if changeChatBgColor
+						.addComponent(jButtonChatBgColor)
+						// #endif
 						
 						// #if changeSize
 						.addComponent(jTextFieldFontsize)
@@ -396,8 +442,18 @@ public class ChatWindow extends javax.swing.JFrame {
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(jTextFieldMessage, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jButtonSend).addComponent(jButtonClear))
+								.addComponent(jButtonSend)
+								
+								// #if clearChat
+								.addComponent(jButtonClear)
+								// #endif
+								
+								)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								
+								// #if changeChatBgColor
+								.addComponent(jButtonChatBgColor)
+								// #endif
 								
 								// #if changeSize
 								.addComponent(jTextFieldFontsize, javax.swing.GroupLayout.PREFERRED_SIZE,
